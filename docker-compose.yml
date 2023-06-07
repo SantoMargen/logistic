@@ -1,8 +1,9 @@
-version: '3.2'
+version: '3.3'
 
 services:
-  app:
-    container_name: 'app'
+  auth-rest:
+    container_name: auth-rest
+    image: auth-rest
     build: 
       dockerfile: .docker/dockerfile/dev.Dockerfile
       args:
@@ -16,17 +17,26 @@ services:
     stdin_open: true
     environment:
       - PORT=3000
+      - PG_DB=logistic_DB
+      - PG_PASSWORD=supersecret
+      - PG_USER=user
+      - PG_DB_TEST=logistic_test_DB
+      - SECRET=!niSangatRahasia
     command: npm start
+    depends_on: 
+      - postgres
   postgres:
-    container_name: db
-    image: postgres:15.3-alpine3.18
+    container_name: postgres
+    image: postgres:12.0-alpine
     restart: always
     environment:
-      POSTGRES_DB: logistic_DB
-      POSTGRES_PASSWORD: supersecret
-      POSTGRES_USER: user
-      POSTGRES_DB_TEST: logistic_test_DB
+      POSTGRES_DB: "logistic_DB"
+      POSTGRES_PASSWORD: "supersecret"
+      POSTGRES_USER: "user"
+      POSTGRES_DB_TEST: "logistic_test_DB"
       PGDATA: /var/lib/postgresql/data/logistic_DB
+    volumes:
+      - .docker/data/postgres-data:/var/lib/postgresql/data/logistic_DB
     ports:
       - "5432:5432"
 volumes:
