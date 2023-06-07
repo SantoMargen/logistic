@@ -1,0 +1,28 @@
+version: '3.2'
+
+services:
+  app:
+    container_name: 'app'
+    build: .docker/dockerfile/dev.Dockerfile
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    ports:
+      - 3000:3000
+    stdin_open: true
+    environment:
+      - PORT=3000
+    command: npm start
+  postgres:
+    container_name: db
+    image: postgres:15.3-alpine3.18
+    restart: always
+    environment:
+      POSTGRES_DB: logistic_DB
+      POSTGRES_PASSWORD: supersecret
+      POSTGRES_USER: user
+      PGDATA: /var/lib/postgresql/data/logistic_DB
+    ports:
+      - "5432:5432"
+volumes:
+  node_modules:
