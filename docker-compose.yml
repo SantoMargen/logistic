@@ -3,7 +3,11 @@ version: '3.2'
 services:
   app:
     container_name: 'app'
-    build: .docker/dockerfile/dev.Dockerfile
+    build: 
+      dockerfile: .docker/dockerfile/dev.Dockerfile
+      args:
+        SERVICE_NAME: 'rest'
+      context: .
     volumes:
       - .:/app
       - node_modules:/app/node_modules
@@ -21,6 +25,7 @@ services:
       POSTGRES_DB: logistic_DB
       POSTGRES_PASSWORD: supersecret
       POSTGRES_USER: user
+      POSTGRES_DB_TEST: logistic_test_DB
       PGDATA: /var/lib/postgresql/data/logistic_DB
     ports:
       - "5432:5432"
