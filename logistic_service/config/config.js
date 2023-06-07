@@ -4,15 +4,15 @@ module.exports =
         "username": process.env.PG_USER,
         "password": process.env.PG_PASSWORD,
         "database": process.env.PG_DB,
-        "host": "postgres",
+        "host": "postgres_logistic",
         "dialect": "postgres"
     },
     "test": {
         "username": process.env.PG_USER,
         "password": process.env.PG_PASSWORD,
         "database": process.env.PG_TEST,
-        "host": "postgres",
-        "dialect": "postgres"
+        "host": "postgres_logistic",
+        "dialect": "postgres_logistic"
     },
     "production": {
         "username": "root",

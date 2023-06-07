@@ -17,7 +17,7 @@ services:
     stdin_open: true
     environment:
       - PORT=3000
-      - PG_DB=logistic_DB
+      - PG_DB=auth_db
       - PG_PASSWORD=supersecret
       - PG_USER=user
       - PG_TEST=logistic_test_DB
@@ -30,12 +30,12 @@ services:
     image: postgres:12.0-alpine
     restart: always
     environment:
-      POSTGRES_DB: "logistic_DB"
+      POSTGRES_DB: "auth_db"
       POSTGRES_PASSWORD: "supersecret"
       POSTGRES_USER: "user"
-      PGDATA: /var/lib/postgresql/data/logistic_DB
+      PGDATA: /var/lib/postgresql/data/auth_db
     volumes:
-      - .docker/data/postgres-data:/var/lib/postgresql/data/logistic_DB
+      - .docker/data/postgres-data:/var/lib/postgresql/data/auth_db
     ports:
       - "5432:5432"
 volumes:
