@@ -1,10 +1,10 @@
 module.exports =
 {
     "development": {
-        "username": process.env.POSTGRES_USER,
-        "password": process.env.POSTGRES_PASSWORD,
-        "database": process.env.POSTGRES_DB,
-        "host": "127.0.0.1",
+        "username": process.env.PG_USER,
+        "password": process.env.PG_PASSWORD,
+        "database": process.env.PG_DB,
+        "host": "postgres",
         "dialect": "postgres"
     },
     "test": {
