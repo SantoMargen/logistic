@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  logistic-rest:
+    container_name: logistic-rest
+    image: logistic-rest
+    build: 
+      dockerfile: .docker/dockerfile/dev.Dockerfile
+      args:
+        SERVICE_NAME: 'rest'
+      context: .
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    ports:
+      - 3001:3001
+    stdin_open: true
+    environment:
+      - PORT=3001
+      - PG_DB=logistic_DB
+      - PG_PASSWORD=supersecret
+      - PG_USER=user
+      - PG_TEST=logistic_test_DB
+      - SECRET='development'
+    command: npm start
+volumes:
+  node_modules:
