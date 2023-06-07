@@ -20,8 +20,8 @@ services:
       - PG_DB=logistic_DB
       - PG_PASSWORD=supersecret
       - PG_USER=user
-      - PG_DB_TEST=logistic_test_DB
-      - SECRET=!niSangatRahasia
+      - PG_TEST=logistic_test_DB
+      - SECRET='development'
     command: npm start
     depends_on: 
       - postgres
@@ -33,7 +33,6 @@ services:
       POSTGRES_DB: "logistic_DB"
       POSTGRES_PASSWORD: "supersecret"
       POSTGRES_USER: "user"
-      POSTGRES_DB_TEST: "logistic_test_DB"
       PGDATA: /var/lib/postgresql/data/logistic_DB
     volumes:
       - .docker/data/postgres-data:/var/lib/postgresql/data/logistic_DB
