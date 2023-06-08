@@ -8,10 +8,10 @@ module.exports =
         "dialect": "postgres"
     },
     "test": {
-        "username": process.env.POSTGRES_USER,
-        "password": process.env.POSTGRES_PASSWORD,
-        "database": process.env.POSTGRES_TEST,
-        "host": process.env.DB__HOST_TEST,
+        "username": process.env.PG_USER,
+        "password": process.env.PG_PASSWORD,
+        "database": process.env.PG_TEST,
+        "host": "127.0.0.1",
         "dialect": "postgres"
     },
     "production": {

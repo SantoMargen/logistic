@@ -20,8 +20,9 @@ services:
       - PG_DB=auth_db
       - PG_PASSWORD=supersecret
       - PG_USER=user
-      - PG_TEST=logistic_test_DB
+      - PG_TEST='auth_test_DB'
       - SECRET='development'
+      - NODE_ENV='development'
     command: npm start
     depends_on: 
       - postgres
@@ -33,9 +34,6 @@ services:
       POSTGRES_DB: "auth_db"
       POSTGRES_PASSWORD: "supersecret"
       POSTGRES_USER: "user"
-      PGDATA: /var/lib/postgresql/data/auth_db
-    volumes:
-      - .docker/data/postgres-data:/var/lib/postgresql/data/auth_db
     ports:
       - "5432:5432"
 volumes:
